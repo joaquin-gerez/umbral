@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Umbral</title>
+    <link rel="stylesheet" href="blocked.css">
+  </head>
+  <body>
+    <main>
+      <section class="breathing" aria-label="Guía de respiración">
+        <div id="breath-orb" class="breath-orb" aria-hidden="true"><span></span></div>
+        <p id="breath-label" class="breath-label" aria-live="polite">Inhalá</p>
+        <p id="breath-timer" class="breath-timer">30 segundos</p>
+      </section>
+
+      <section class="thought" aria-label="Pensamiento">
+        <blockquote id="reflection"></blockquote>
+        <cite id="reflection-source"></cite>
+      </section>
+    </main>
+    <script src="blocked.js"></script>
+  </body>
+</html>

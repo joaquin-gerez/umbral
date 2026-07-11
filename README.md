@@ -1,23 +1,48 @@
-# Extension Chrome Focus
+<p align="center">
+  <img src="assets/logo.svg" width="96" alt="Logo de Umbral">
+</p>
 
-Extension Chrome Focus es una extension para navegador pensada para reducir distracciones y sostener sesiones de trabajo profundas.
+# Umbral
 
-## Stack
+Entrá una vez. Volvé cuando lo decidas, no por reflejo.
 
-- Chrome Extension Manifest V3
-- HTML, CSS y JavaScript
-- `chrome.storage` para configuracion local
+Umbral es una extensión de Chrome para cortar esas visitas de pocos segundos que rompen una sesión de trabajo. Elegís un sitio y un intervalo. La primera entrada queda habilitada; las siguientes esperan hasta que termine el enfriamiento.
 
-## Que hace
+No mide productividad, no arma rachas y no necesita una cuenta.
 
-- Permite definir sitios distractores
-- Aplica reglas de bloqueo o enfriamiento por sitio
-- Muestra estado y tiempo restante desde la extension
-- Busca favorecer foco sin depender de servicios externos
+## Cómo se usa
 
-## Como funciona
+La extensión arranca con un grupo de redes sociales preparado. Desde el popup podés encenderlo, cambiar el sonido de fondo o sumar tus propios dominios.
 
-- `manifest.json`: permisos y configuracion base
-- `background` o service worker: reglas de bloqueo y temporizadores
-- `popup/`: panel de configuracion y estado
-- `block_page/`: vista mostrada cuando un acceso esta bloqueado
+Cuando intentás volver antes de tiempo, Umbral reemplaza la página por una respiración breve y una cita. La idea no es retarte: es darte unos segundos para decidir si realmente querías estar ahí.
+
+Modo Zen puede mantener un ambiente sonoro mientras navegás. Incluye lluvia, ruido marrón, binaural, lo-fi, jazz, clásica minimal y meditación. Son paisajes generativos locales; no hay streaming.
+
+## Instalar para probar
+
+1. Descargá o cloná este repositorio.
+2. Abrí `chrome://extensions`.
+3. Activá **Modo de desarrollador**.
+4. Elegí **Cargar extensión sin empaquetar** y seleccioná esta carpeta.
+
+No hay dependencias ni proceso de compilación.
+
+## Privacidad
+
+Las reglas, intervalos y preferencias se guardan con `chrome.storage.local`. Umbral no envía historial, URLs ni estadísticas a ningún servidor.
+
+## Desarrollo
+
+La extensión usa Manifest V3, JavaScript, HTML y CSS. `background.js` administra los enfriamientos; `blocked/` contiene la pausa; `offscreen/` mantiene el audio de Zen.
+
+Para regenerar los íconos:
+
+```bash
+node scripts/generate-icons.mjs
+```
+
+La investigación de producto y evidencia está resumida en [RESEARCH.md](RESEARCH.md). Las reglas para trabajar sobre el código están en [AGENTS.md](AGENTS.md).
+
+## Licencia
+
+MIT.

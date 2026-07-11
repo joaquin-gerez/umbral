@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Umbral - Anti Microcortes",
+  "description": "Deja entrar a sitios distractores solo cuando ya paso el intervalo que elegiste.",
+  "version": "0.4.0",
+  "permissions": ["storage", "alarms", "tabs", "webNavigation", "declarativeNetRequest", "offscreen"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Umbral",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked/blocked.html", "blocked/blocked.css", "blocked/blocked.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

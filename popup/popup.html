@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Umbral</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="identity">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <h1>Umbral</h1>
+            <p id="master-status">Activo</p>
+          </div>
+        </div>
+        <label class="switch master-switch">
+          <span class="sr-only">Activar Umbral</span>
+          <input id="master-toggle" type="checkbox">
+          <span class="switch-track" aria-hidden="true"></span>
+        </label>
+      </header>
+
+      <section class="zen-control" aria-labelledby="zen-title">
+        <div class="zen-heading">
+          <div class="audio-indicator" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div>
+            <h2 id="zen-title">Modo Zen</h2>
+            <p id="zen-status">Sonando en segundo plano</p>
+          </div>
+          <label class="switch compact-switch">
+            <span class="sr-only">Activar Modo Zen</span>
+            <input id="zen-toggle" type="checkbox">
+            <span class="switch-track" aria-hidden="true"></span>
+          </label>
+        </div>
+        <select id="sound-select" aria-label="Sonido de Modo Zen">
+          <option value="rain">Lluvia suave</option>
+          <option value="brown">Ruido marrón</option>
+          <option value="binaural">Binaural 14 Hz · auriculares</option>
+          <option value="lofi">Lo-fi lento</option>
+          <option value="jazz">Jazz nocturno</option>
+          <option value="classical">Clásica minimal</option>
+          <option value="meditation">Meditación</option>
+          <option value="none">Sin sonido</option>
+        </select>
+      </section>
+
+      <section class="site-section" aria-labelledby="sites-title">
+        <div class="section-title">
+          <h2 id="sites-title">Sitios protegidos</h2>
+          <span id="site-summary"></span>
+        </div>
+        <ul id="site-list" aria-live="polite"></ul>
+      </section>
+
+      <button id="open-add" class="add-button" type="button">Agregar sitio</button>
+    </main>
+
+    <div id="add-panel" class="add-panel" hidden>
+      <button id="close-add" class="panel-backdrop" type="button" aria-label="Cerrar"></button>
+      <section class="panel-sheet" aria-labelledby="add-title">
+        <div class="panel-heading">
+          <h2 id="add-title">Agregar sitio</h2>
+          <button id="close-add-icon" class="close-button" type="button" aria-label="Cerrar">×</button>
+        </div>
+        <form id="site-form">
+          <label for="domain">Dirección web</label>
+          <input id="domain" name="domain" type="text" placeholder="youtube.com" autocomplete="off" required>
+          <label for="minutes">Dejar entrar cada</label>
+          <select id="minutes" name="minutes">
+            <option value="10">10 minutos</option>
+            <option value="15">15 minutos</option>
+            <option value="30" selected>30 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="60">1 hora</option>
+          </select>
+          <p id="form-error" class="form-error" role="alert"></p>
+          <button class="save-button" type="submit">Guardar protección</button>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
