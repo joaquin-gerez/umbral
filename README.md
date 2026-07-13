@@ -31,6 +31,8 @@ No hay dependencias ni proceso de compilación.
 
 Las reglas, intervalos y preferencias se guardan con `chrome.storage.local`. Umbral no envía historial, URLs ni estadísticas a ningún servidor.
 
+La explicación completa del tratamiento local de datos está en la [política de privacidad](PRIVACY.md).
+
 ## Desarrollo
 
 La extensión usa Manifest V3, JavaScript, HTML y CSS. `background.js` administra los enfriamientos; `blocked/` contiene la pausa; `offscreen/` mantiene el audio de Zen.
@@ -39,6 +41,13 @@ Para regenerar los íconos:
 
 ```bash
 node scripts/generate-icons.mjs
+```
+
+Para preparar los recursos y el ZIP de Chrome Web Store:
+
+```bash
+node scripts/generate-store-assets.mjs
+node scripts/package-extension.mjs
 ```
 
 La investigación de producto y evidencia está resumida en [RESEARCH.md](RESEARCH.md). Las reglas para trabajar sobre el código están en [AGENTS.md](AGENTS.md).

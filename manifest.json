@@ -3,7 +3,7 @@
   "name": "Umbral - Anti Microcortes",
   "description": "Deja entrar a sitios distractores solo cuando ya paso el intervalo que elegiste.",
   "version": "0.4.0",
-  "permissions": ["storage", "alarms", "tabs", "webNavigation", "declarativeNetRequest", "offscreen"],
+  "permissions": ["storage", "alarms", "webNavigation", "declarativeNetRequest", "offscreen"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js",
