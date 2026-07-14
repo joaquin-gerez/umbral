@@ -23,15 +23,31 @@
         </label>
       </header>
 
+      <section class="session-control" aria-labelledby="session-title">
+        <div class="session-copy">
+          <h2 id="session-title">Sesión temporal</h2>
+          <p id="session-status">Opcional · al terminar, Umbral se apaga</p>
+        </div>
+        <div class="session-actions">
+          <select id="session-duration" aria-label="Duración de la sesión">
+            <option value="25">25 min</option>
+            <option value="45" selected>45 min</option>
+            <option value="60">1 hora</option>
+            <option value="90">1 h 30</option>
+          </select>
+          <button id="session-button" type="button">Iniciar</button>
+        </div>
+      </section>
+
       <section class="zen-control" aria-labelledby="zen-title">
         <div class="zen-heading">
           <div class="audio-indicator" aria-hidden="true"><i></i><i></i><i></i></div>
           <div>
-            <h2 id="zen-title">Modo Zen</h2>
+            <h2 id="zen-title">Ambiente Zen</h2>
             <p id="zen-status">Sonando en segundo plano</p>
           </div>
           <label class="switch compact-switch">
-            <span class="sr-only">Activar Modo Zen</span>
+            <span class="sr-only">Activar Ambiente Zen</span>
             <input id="zen-toggle" type="checkbox">
             <span class="switch-track" aria-hidden="true"></span>
           </label>

@@ -1,6 +1,6 @@
 const SITES_KEY = "sites";
 const SETTINGS_KEY = "settings";
-const DEFAULT_SETTINGS = { enabled: true, zenMode: true, sound: "rain" };
+const DEFAULT_SETTINGS = { enabled: true, zenMode: true, sound: "rain", sessionEndsAt: null };
 
 const SOUND_NAMES = {
   rain: "Lluvia suave",
@@ -23,6 +23,9 @@ const masterStatus = document.querySelector("#master-status");
 const zenToggle = document.querySelector("#zen-toggle");
 const zenStatus = document.querySelector("#zen-status");
 const soundSelect = document.querySelector("#sound-select");
+const sessionDuration = document.querySelector("#session-duration");
+const sessionButton = document.querySelector("#session-button");
+const sessionStatus = document.querySelector("#session-status");
 const siteSummary = document.querySelector("#site-summary");
 const addPanel = document.querySelector("#add-panel");
 
@@ -63,19 +66,35 @@ async function saveSettings(patch) {
 
 function renderStatus(sites, settings) {
   const activeCount = sites.filter((site) => site.enabled !== false).length;
+  const sessionEndsAt = Number(settings.sessionEndsAt);
+  const sessionActive = settings.enabled && sessionEndsAt > Date.now();
   masterToggle.checked = settings.enabled;
   zenToggle.checked = settings.zenMode;
   soundSelect.value = settings.sound;
   soundSelect.disabled = !settings.zenMode;
-  masterStatus.textContent = settings.enabled ? "Activo" : "En pausa";
+  masterStatus.textContent = sessionActive
+    ? `Sesión · ${Math.ceil((sessionEndsAt - Date.now()) / 60_000)} min`
+    : settings.enabled
+      ? "Activo hasta que lo apagues"
+      : "En pausa";
   document.body.classList.toggle("protection-off", !settings.enabled);
   document.body.classList.toggle("zen-playing", settings.enabled && settings.zenMode && settings.sound !== "none");
-  zenStatus.textContent = settings.zenMode
-    ? settings.sound === "none"
-      ? "Pausa y respiración, sin audio"
-      : `${SOUND_NAMES[settings.sound]} en segundo plano`
-    : "Desactivado";
-  siteSummary.textContent = `${activeCount} ${activeCount === 1 ? "protección activa" : "protecciones activas"}`;
+  document.body.classList.toggle("session-active", sessionActive);
+  sessionDuration.disabled = sessionActive;
+  sessionButton.textContent = sessionActive ? "Terminar" : "Iniciar";
+  sessionButton.dataset.active = String(sessionActive);
+  sessionStatus.textContent = sessionActive
+    ? `Termina a las ${new Date(sessionEndsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}`
+    : "Opcional · al terminar, Umbral se apaga";
+  zenStatus.textContent = !settings.enabled && settings.zenMode
+    ? "Se inicia al activar Umbral"
+    : settings.zenMode
+      ? settings.sound === "none"
+        ? "Activado, sin audio"
+        : `${SOUND_NAMES[settings.sound]} en segundo plano`
+      : "Desactivado";
+  const protectionLabel = settings.enabled ? "activa" : "lista";
+  siteSummary.textContent = `${activeCount} ${activeCount === 1 ? `protección ${protectionLabel}` : `protecciones ${protectionLabel}s`}`;
 }
 
 function renderSites(sites) {
@@ -118,9 +137,22 @@ function setAddPanel(open) {
   }
 }
 
-masterToggle.addEventListener("change", () => saveSettings({ enabled: masterToggle.checked }));
+masterToggle.addEventListener("change", () => saveSettings({
+  enabled: masterToggle.checked,
+  sessionEndsAt: null
+}));
 zenToggle.addEventListener("change", () => saveSettings({ zenMode: zenToggle.checked }));
 soundSelect.addEventListener("change", () => saveSettings({ sound: soundSelect.value }));
+sessionButton.addEventListener("click", () => {
+  if (sessionButton.dataset.active === "true") {
+    saveSettings({ enabled: false, sessionEndsAt: null });
+    return;
+  }
+  saveSettings({
+    enabled: true,
+    sessionEndsAt: Date.now() + Number(sessionDuration.value) * 60_000
+  });
+});
 document.querySelector("#open-add").addEventListener("click", () => setAddPanel(true));
 document.querySelector("#close-add").addEventListener("click", () => setAddPanel(false));
 document.querySelector("#close-add-icon").addEventListener("click", () => setAddPanel(false));

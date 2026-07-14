@@ -12,7 +12,9 @@ No mide productividad, no arma rachas y no necesita una cuenta.
 
 ## Cómo se usa
 
-La extensión arranca con un grupo de redes sociales preparado. Desde el popup podés encenderlo, cambiar el sonido de fondo o sumar tus propios dominios.
+La extensión arranca con un grupo de redes sociales preparado. Desde el popup podés dejar la protección encendida hasta que la apagues o iniciar una sesión temporal de 25, 45, 60 o 90 minutos. Al terminar una sesión, Umbral se desactiva solo.
+
+El ambiente Zen es opcional y reproduce el sonido elegido mientras Umbral está activo. También podés sumar tus propios dominios y configurar cada intervalo por separado.
 
 Cuando intentás volver antes de tiempo, Umbral reemplaza la página por una respiración breve y una cita. La idea no es retarte: es darte unos segundos para decidir si realmente querías estar ahí.
 

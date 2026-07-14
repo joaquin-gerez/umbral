@@ -153,19 +153,33 @@ async function startAudio(sound) {
   clearAudio();
   context = context || new AudioContext();
   await context.resume();
+  if (context.state !== "running") throw new Error(`AudioContext en estado ${context.state}`);
   master = context.createGain();
-  master.gain.value = 0.42;
+  master.gain.value = 0.62;
   master.connect(context.destination);
-  currentSound = sound;
 
   if (sound === "rain" || sound === "brown") startNoise(sound);
   if (sound === "binaural") startBinaural();
   if (sound === "lofi" || sound === "jazz") startChordPattern(sound);
   if (sound === "classical") startClassical();
   if (sound === "meditation") startMeditation();
+  currentSound = sound;
 }
 
-chrome.runtime.onMessage.addListener((message) => {
-  if (message.type === "ZEN_AUDIO_SET") startAudio(message.sound);
-  if (message.type === "ZEN_AUDIO_STOP") clearAudio();
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.target !== "offscreen") return false;
+  if (message.type === "ZEN_AUDIO_SET") {
+    startAudio(message.sound)
+      .then(() => sendResponse({ ok: true, state: context.state }))
+      .catch((error) => {
+        console.error("Umbral no pudo iniciar el audio", error);
+        sendResponse({ ok: false, error: error.message });
+      });
+    return true;
+  }
+  if (message.type === "ZEN_AUDIO_STOP") {
+    clearAudio();
+    sendResponse({ ok: true });
+  }
+  return false;
 });

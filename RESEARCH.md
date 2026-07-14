@@ -24,16 +24,31 @@ Similarweb ubico en mayo de 2026 a YouTube, Facebook, Instagram, Reddit, X y Tik
 
 ## Citas de la pausa
 
-Las traducciones pueden variar entre ediciones. La seleccion usa fragmentos breves y conserva autor y obra en pantalla.
+La biblioteca contiene 26 fragmentos breves y evita repetir la misma cita en dos pausas consecutivas. Cada pantalla muestra autor y obra. Cuando el original no esta en espanol, el texto de la extension usa una traduccion breve propia; por eso la redaccion puede variar frente a una edicion comercial.
 
+Fuentes consultadas para verificar texto y atribucion:
+
+- Marco Aurelio y Rousseau, ediciones digitalizadas en Wikisource: https://es.wikisource.org/wiki/Autor:Marco_Aurelio y https://es.wikisource.org/wiki/P%C3%A1gina:Pensamientos_(Rousseau)_-_Tomo_II.djvu/257
+- Pascal, *Pensamientos*: https://fr.wikisource.org/wiki/Page:Pascal_-_Pens%C3%A9es,_%C3%A9d._Didiot,_1896.djvu/124
+- Nietzsche, *Crepusculo de los idolos*, y Schopenhauer, ensayos de *Parerga y paralipomena*: https://www.gutenberg.org/files/52263/52263-h/52263-h.htm y https://www.gutenberg.org/cache/epub/10715/pg10715-images.html
+- Epicteto, *Manual*: https://www.gutenberg.org/files/45109/45109-h/45109-h.htm
+- Seneca, *De la brevedad de la vida* y *Cartas a Lucilio*: https://www.stoicsource.com/seneca/on-the-shortness-of-life/1.01/ y https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_2
+- Thoreau, *Walden*, y Emerson, *Self-Reliance*: https://www.gutenberg.org/files/205/205-h/205-h.htm y https://www.gutenberg.org/files/2944/2944-h/2944-h.htm
+- William James, *The Principles of Psychology*: https://www.gutenberg.org/files/57628/old/57628-h/57628-h.htm
+- Hannah Arendt, *The Human Condition*: https://openlibrary.org/books/OL6245102M/The_human_condition
+- T. S. Eliot, *Burnt Norton*: https://tseliot.sites.luc.edu/quotes.php
+- Rilke, *Letters to a Young Poet*: https://books.google.com/books/about/Letters_to_a_Young_Poet.html?id=133ICgAAQBAJ
+- Whitman, *Song of Myself*: https://en.wikisource.org/wiki/Page:Leaves_of_Grass_(1882).djvu/51
+- Kafka, *Aphorismen*: https://www.projekt-gutenberg.org/kafka/aphorism/index.html
+- Antonio Machado, *Nuevas canciones*: https://upload.wikimedia.org/wikipedia/commons/e/e1/Antonio_Machado_-_Nueva_Canciones_%281924%29.pdf
+- Montaigne, *Ensayos*: https://www.gutenberg.org/files/60014/60014-h/60014-h.htm
+- Virginia Woolf, *A Room of One's Own*: https://en.wikisource.org/wiki/Page:A_Room_of_One%27s_Own_(Hogarth_1929).djvu/118
+- Camus, *The Rebel*: https://openlibrary.org/books/OL6203399M/The_rebel
+- Kierkegaard, diario JJ:167 de 1843: https://homepage.math.uiowa.edu/~jorgen/kierkegaardquotesource.html
+- Ortega y Gasset, *Meditaciones del Quijote*: https://www.gutenberg.org/ebooks/57448
 - Dostoyevski, *Los hermanos Karamazov*: https://www.argentina.gob.ar/sites/default/files/los_hermanos_karamazov_dostoyevski.pdf
-- Pierre Bourdieu, *Sobre la television*: https://www.eldiario.es/vertele/videos/actualidad/television_1_7687228.html
-- Simone Weil, carta a Joe Bousquet, citada en *Sobre Dios*: https://proassets.planetadelibros.cl/usuaris/libros_contenido/arxius/63/62220_Sobre_dios.pdf
-- Blaise Pascal, *Pensamientos*: https://www.larazon.es/sociedad/blaise-pascal-todos-problemas-provienen-incapacidad-hombre-sentarse-solo-habitacion-p7m_202607046a48f825a8768a6aee40f0d3.html
-- Nietzsche, *Crepusculo de los idolos*: https://blogdenotasnietzsche.wordpress.com/2010/02/04/quien-tiene-un-porque-para-vivir-encontrara-casi-siempre-el-como/
-- Schopenhauer, *Parerga y paralipomena*: https://www.elconfidencial.com/alma-corazon-vida/2026-03-03/arthur-schopenhauer-filosofo-si-no-ama-soledad-no-ama-libertad-1qrt_4313168/
-- Marco Aurelio, *Meditaciones*, V.16: https://theobjective.com/lifestyle/2026-02-12/marco-aurelio-filosofo-emperador-50-anos-felicidad-vida-depende-calidad-pensamientos/
-- Byung-Chul Han, discurso de 2025: https://elpais.com/cultura/2025-10-24/byung-chul-han-en-los-premios-princesa-de-asturias-nos-hemos-convertido-en-una-herramienta-del-smartphone-nos-usa-a-nosotros-y-no-al-reves.html
+- Simone Weil, carta a Joe Bousquet: https://proassets.planetadelibros.cl/usuaris/libros_contenido/arxius/63/62220_Sobre_dios.pdf
+- Byung-Chul Han, discurso del Premio Princesa de Asturias: https://elpais.com/cultura/2025-10-24/byung-chul-han-en-los-premios-princesa-de-asturias-nos-hemos-convertido-en-una-herramienta-del-smartphone-nos-usa-a-nosotros-y-no-al-reves.html
 
 ## Decisiones de producto
 

@@ -19,6 +19,7 @@ Este documento contiene el material listo para copiar al Developer Dashboard. De
 > Funciones principales:
 >
 > - Intervalos configurables por dominio o grupo de sitios.
+> - Activacion indefinida o sesion temporal con apagado automatico.
 > - Pausa sobria, sin rachas, puntos ni penalizaciones.
 > - Modo Zen con ambientes sonoros generados localmente.
 > - Configuracion y actividad procesadas solo en tu dispositivo.
@@ -38,7 +39,7 @@ Espaciar las visitas repetidas a dominios elegidos por la persona usuaria median
 
 **storage:** Guarda localmente los dominios protegidos, los intervalos, el momento de la ultima visita permitida y las preferencias de la extension. No se sincroniza ni transmite esta informacion.
 
-**alarms:** Actualiza periodicamente las reglas locales cuando termina un intervalo, incluso si el popup esta cerrado.
+**alarms:** Actualiza periodicamente las reglas locales cuando termina un intervalo y apaga una sesion temporal al llegar a su fin, incluso si el popup esta cerrado.
 
 **webNavigation:** Detecta la confirmacion de una navegacion principal para comprobar localmente si el dominio coincide con uno protegido y registrar una visita permitida. No crea ni transmite un historial.
 
@@ -74,7 +75,7 @@ Espaciar las visitas repetidas a dominios elegidos por la persona usuaria median
 
 Capturas recomendadas:
 
-1. Popup con Modo Zen y los grupos protegidos visibles.
+1. Popup con la sesion temporal, Modo Zen y los grupos protegidos visibles.
 2. Panel para agregar un dominio y elegir su intervalo.
 3. Pausa de 30 segundos mostrada tras la segunda visita a un dominio protegido.
 

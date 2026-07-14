@@ -1,11 +1,13 @@
 const SITES_KEY = "sites";
 const SETTINGS_KEY = "settings";
 const ALARM_NAME = "refresh-cooldowns";
+const SESSION_ALARM_NAME = "end-focus-session";
 
 const DEFAULT_SETTINGS = {
   enabled: true,
   zenMode: true,
-  sound: "rain"
+  sound: "rain",
+  sessionEndsAt: null
 };
 
 let refreshQueue = Promise.resolve();
@@ -129,24 +131,54 @@ async function syncZenAudio(settings) {
   const shouldPlay = settings.enabled && settings.zenMode && settings.sound !== "none";
   if (shouldPlay) {
     await ensureOffscreenDocument();
-    await chrome.runtime.sendMessage({ type: "ZEN_AUDIO_SET", sound: settings.sound });
+    const response = await chrome.runtime.sendMessage({
+      type: "ZEN_AUDIO_SET",
+      target: "offscreen",
+      sound: settings.sound
+    });
+    if (!response?.ok) throw new Error(response?.error || "El audio no pudo iniciarse");
     return;
   }
   if (await hasOffscreenDocument()) {
-    await chrome.runtime.sendMessage({ type: "ZEN_AUDIO_STOP" });
+    await chrome.runtime.sendMessage({ type: "ZEN_AUDIO_STOP", target: "offscreen" });
     await chrome.offscreen.closeDocument();
   }
 }
 
+async function expireSession(settings) {
+  const sessionEndsAt = Number(settings.sessionEndsAt);
+  if (!sessionEndsAt || Date.now() < sessionEndsAt) return settings;
+
+  const nextSettings = { ...settings, enabled: false, sessionEndsAt: null };
+  await chrome.storage.local.set({ [SETTINGS_KEY]: nextSettings });
+  return nextSettings;
+}
+
+async function syncSessionAlarm(settings) {
+  const sessionEndsAt = Number(settings.sessionEndsAt);
+  if (settings.enabled && sessionEndsAt > Date.now()) {
+    await chrome.alarms.create(SESSION_ALARM_NAME, { when: sessionEndsAt });
+    return;
+  }
+  await chrome.alarms.clear(SESSION_ALARM_NAME);
+}
+
 async function refreshRules() {
-  const { sites, settings } = await ensureDefaults();
+  const state = await ensureDefaults();
+  const sites = state.sites;
+  const settings = await expireSession(state.settings);
   const existing = await chrome.declarativeNetRequest.getDynamicRules();
   await chrome.declarativeNetRequest.updateDynamicRules({
     removeRuleIds: existing.map((rule) => rule.id),
     addRules: rulesFor(sites, settings.enabled)
   });
+  await syncSessionAlarm(settings);
   await updateBadge(settings.enabled);
-  await syncZenAudio(settings);
+  try {
+    await syncZenAudio(settings);
+  } catch (error) {
+    console.error("Umbral no pudo sincronizar el audio de Modo Zen", error);
+  }
 }
 
 function scheduleRefresh() {
@@ -192,7 +224,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.runtime.onStartup.addListener(scheduleRefresh);
 chrome.alarms.onAlarm.addListener(({ name }) => {
-  if (name === ALARM_NAME) scheduleRefresh();
+  if (name === ALARM_NAME || name === SESSION_ALARM_NAME) scheduleRefresh();
 });
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "local" && (changes[SITES_KEY] || changes[SETTINGS_KEY])) scheduleRefresh();

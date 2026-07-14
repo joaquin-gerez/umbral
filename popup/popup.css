@@ -19,13 +19,21 @@ button, input, select { font: inherit; }
 button { color: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-.app-shell { height: 100%; display: grid; grid-template-rows: 58px auto minmax(0, 1fr) 52px; padding: 0 18px; }
+.app-shell { height: 100%; display: grid; grid-template-rows: 58px auto auto minmax(0, 1fr) 52px; padding: 0 18px; }
 .topbar { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .identity { display: flex; align-items: center; gap: 10px; }
 .mark { width: 26px; height: 26px; border: 1px solid var(--accent); border-radius: 50%; box-shadow: inset 0 0 0 6px var(--bg), inset 0 0 0 7px rgba(167,216,184,.45); }
 h1, h2, p { margin: 0; }
 h1 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
 .identity p { margin-top: 2px; color: var(--accent); font-size: 10px; }
+
+.session-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.session-copy h2 { font-size: 13px; }
+.session-copy p { margin-top: 3px; color: var(--muted); font-size: 9px; }
+.session-actions { display: flex; gap: 6px; }
+.session-actions select { width: 78px; height: 32px; }
+.session-actions button { height: 32px; padding: 0 11px; border: 1px solid #4b6758; border-radius: 7px; background: transparent; color: var(--accent); cursor: pointer; font-weight: 700; }
+.session-active .session-actions button { border-color: #725249; color: var(--danger); }
 
 .switch { position: relative; display: inline-flex; flex: 0 0 auto; }
 .switch input { position: absolute; opacity: 0; pointer-events: none; }
@@ -38,7 +46,7 @@ h1 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
 .compact-switch .switch-track::after, .row-switch .switch-track::after { width: 12px; height: 12px; }
 .compact-switch input:checked + .switch-track::after, .row-switch input:checked + .switch-track::after { transform: translateX(16px); }
 
-.zen-control { padding: 14px 0 15px; border-bottom: 1px solid var(--line); }
+.zen-control { padding: 11px 0 12px; border-bottom: 1px solid var(--line); }
 .zen-heading { display: grid; grid-template-columns: 31px 1fr auto; gap: 9px; align-items: center; margin-bottom: 10px; }
 .zen-heading h2 { font-size: 13px; font-weight: 700; }
 .zen-heading p { margin-top: 3px; color: var(--muted); font-size: 10px; }
